@@ -1,6 +1,6 @@
 %define name	xpn
-%define version	0.5.6
-%define release %mkrel 3
+%define version	0.7.0
+%define release %mkrel 1
 
 Name: 	 	%{name}
 Summary: 	GTK2 newsreader with full Unicode support
@@ -44,10 +44,11 @@ perl -pi -e 's|gtk\.TRUE|True|g' xpn_src/*.py
 
 mkdir -p %buildroot/%_bindir
 mkdir -p %buildroot/%_datadir/%name
+mkdir -p %buildroot/%_datadir/locale
 cp tags.txt %buildroot/%_datadir/%name
 cp -r xpn_src %buildroot/%_datadir/%name
 cp -r pixmaps %buildroot/%_datadir/%name
-cp -r lang %buildroot/%_datadir/%name
+cp -r lang/* %buildroot/%_datadir/locale
 cp %name.py %buildroot/%_datadir/%name
 echo "#!/bin/bash" > %buildroot/%_bindir/%name
 echo "cd %_datadir/%name" >> %buildroot/%_bindir/%name
@@ -92,13 +93,13 @@ rm -rf $RPM_BUILD_ROOT
 %clean_menus
 
 %files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
 %doc AUTHORS ChangeLog README TODO *.html
-%{_bindir}/%name
+%attr(0755,root,root) %{_bindir}/%name
 %{_datadir}/%name
+%{_datadir}/locale
 %{_menudir}/%name
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
-
