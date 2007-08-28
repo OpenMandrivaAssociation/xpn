@@ -71,7 +71,6 @@ Icon=%{name}
 Terminal=false
 Type=Application
 Categories=X-MandrivaLinux-Internet-News;Network;News;
-Encoding=UTF-8
 EOF
 
 
