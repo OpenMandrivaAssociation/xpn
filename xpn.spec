@@ -11,7 +11,6 @@ Source:		http://ovh.dl.sourceforge.net/sourceforge/xpn/%{name}-%{version}.tar.bz
 URL:		http://xpn.altervista.org/
 License:	GPL
 Group:		Networking/News
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	ImageMagick
 Requires:	gnome-python >= 2.4.1
 BuildArch:	noarch
