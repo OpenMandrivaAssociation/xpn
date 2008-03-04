@@ -1,5 +1,5 @@
 %define name	xpn
-%define version	0.7.0
+%define version	1.0.0
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -7,7 +7,7 @@ Summary: 	GTK2 newsreader with full Unicode support
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		http://ovh.dl.sourceforge.net/sourceforge/xpn/%{name}-%{version}.tar.bz2
+Source:		http://ovh.dl.sourceforge.net/sourceforge/xpn/%{name}-%{version}.tar.gz
 URL:		http://xpn.altervista.org/
 License:	GPL
 Group:		Networking/News
