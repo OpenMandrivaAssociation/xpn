@@ -12,7 +12,7 @@ URL:		http://xpn.altervista.org/
 License:	GPL
 Group:		Networking/News
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 Requires:	gnome-python >= 2.4.1
 BuildArch:	noarch
 
