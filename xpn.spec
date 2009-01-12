@@ -29,31 +29,28 @@ tag-lines, external editor support, one-key navigation, ROT13, spoiler char ...
 %prep
 %setup -q
 
+%build
+
 %install
 rm -rf %{buildroot}
-%makeinstall
-# replace gtk.FALSE by False
-#perl -pi -e 's|gtk\.FALSE|False|g' xpn.py
-#perl -pi -e 's|gtk\.FALSE|False|g' xpn_src/*.py
-# replace gtk.TRUE by True
-#perl -pi -e 's|gtk\.TRUE|True|g' xpn.py
-#perl -pi -e 's|gtk\.TRUE|True|g' xpn_src/*.py
+mkdir -p %{buildroot}/%{_bindir}
+mkdir -p %{buildroot}/%{_datadir}/%{name}
+mkdir -p %{buildroot}/%{_datadir}/locale
+cp tags.txt %{buildroot}/%{_datadir}/%{name}
+cp -r xpn_src %{buildroot}/%{_datadir}/%{name}
+cp -r pixmaps %{buildroot}/%{_datadir}/%{name}
+cp -r lang/{de,fr,it} %{buildroot}/%{_datadir}/locale
+cp %{name}.py %{buildroot}/%{_datadir}/%{name}
 
-#mkdir -p %{buildroot}/%{_bindir}
-#mkdir -p %{buildroot}/%{_datadir}/%{name}
-#mkdir -p %{buildroot}/%{_datadir}/locale
-#cp tags.txt %{buildroot}/%{_datadir}/%{name}
-#cp -r xpn_src %{buildroot}/%{_datadir}/%{name}
-#cp -r pixmaps %{buildroot}/%{_datadir}/%{name}
-#cp -r lang/* %{buildroot}/%{_datadir}/locale
-#cp %{name}.py %{buildroot}/%{_datadir}/%{name}
-#echo "#!/bin/bash" > %{buildroot}/%{_bindir}/%{name}
-#echo "cd %{_datadir}/%{name}" >> %{buildroot}/%{_bindir}/%{name}
-#echo "python %{name}.py -d \$@" >> %{buildroot}/%{_bindir}/%{name}
-#chmod 755 %{buildroot}/%{_bindir}/%{name}
+#wrapper
+cat<<EOF>%{buildroot}/%{_bindir}/%{name}
+#!/bin/bash
+cd %{_datadir}/%{name}
+python %{name}.py -d \$@
+EOF
+chmod 755 %{buildroot}/%{_bindir}/%{name}
 
 #menu
-
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -74,6 +71,8 @@ convert -size 32x32 pixmaps/%{name}.xpm %{buildroot}/%{_iconsdir}/%{name}.png
 mkdir -p %{buildroot}/%{_miconsdir}
 convert -size 16x16 pixmaps/%{name}.xpm %{buildroot}/%{_miconsdir}/%{name}.png
 
+%find_lang %{name}
+
 %clean
 rm -rf %{buildroot}
 
@@ -85,12 +84,11 @@ rm -rf %{buildroot}
 %clean_menus
 %endif
 
-%files
+%files -f %{name}.lang
 %defattr(0644,root,root,0755)
 %doc AUTHORS ChangeLog README TODO *.html
 %attr(0755,root,root) %{_bindir}/%{name}
 %{_datadir}/%{name}
-%{_datadir}/locale
 %{_datadir}/applications/mandriva-%{name}.desktop
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
