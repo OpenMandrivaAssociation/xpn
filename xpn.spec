@@ -1,5 +1,5 @@
 Name: 	 		xpn
-Version: 		1.2.5
+Version: 		1.2.6
 Release: 		%mkrel 1
 
 Summary:	GTK2 newsreader with full Unicode support
