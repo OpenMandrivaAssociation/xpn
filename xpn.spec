@@ -5,7 +5,7 @@ Release: 		%mkrel 2
 Summary:	GTK2 newsreader with full Unicode support
 License:	GPLv2+
 Group:		Networking/News
-URL:		http://xpn.altervista.org/
+URL:		https://xpn.altervista.org/
 Source0:	http://xpn.altervista.org/codice/%{name}-%{version}.tar.gz
 
 BuildArch:	noarch
