@@ -1,6 +1,6 @@
 Name: 	 		xpn
 Version: 		1.2.6
-Release: 		%mkrel 2
+Release: 		3
 
 Summary:	GTK2 newsreader with full Unicode support
 License:	GPLv2+
@@ -146,7 +146,7 @@ rm -rf %{buildroot}
 - Wrapper fix
 - Do install translations + tags.txt
 
-* Thu May 04 2006 Nicolas Lécureuil <neoclust@mandriva.org> 0.5.6-1mdk
+* Thu May 04 2006 Nicolas Lï¿½cureuil <neoclust@mandriva.org> 0.5.6-1mdk
 - New release 0.5.6
 - Fix Source URL to make it rpmbuildupdate friendly
 - use mkrel
